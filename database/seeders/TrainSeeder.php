@@ -17,9 +17,15 @@ class TrainSeeder extends Seeder
         for($i=0; $i<100; $i++){
             $newTrain= new Train();
             $dep_time_set = $faker->dateTimeBetween('-1 week', '+1 week');
+            $dep_station = $faker->city();
+            $arr_station= $faker->city();
+            if($dep_station===$arr_station){
+                $arr_station= $faker->city();
+            }
+            
             $newTrain->company = $faker->randomElement(['Trenitalia','Italo']);
-            $newTrain->depature_station= $faker->city();
-            $newTrain->arrival_station= $faker->city();
+            $newTrain->depature_station= $dep_station;
+            $newTrain->arrival_station= $arr_station;
             $newTrain->departure_time= $dep_time_set;
             $newTrain->arrival_time= $faker->dateTimeBetween($dep_time_set, '+1 week');
             $newTrain->train_code= $faker->unique()->bothify('??#####');
