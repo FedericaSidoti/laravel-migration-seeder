@@ -16,9 +16,12 @@ class TrainSeeder extends Seeder
     {
         for($i=0; $i<100; $i++){
             $newTrain= new Train();
+            //salvo la data di partenza per usarla come base di quella di arrivo
             $dep_time_set = $faker->dateTimeBetween('-1 week', '+1 week');
+            //salvo le due stazioni
             $dep_station = $faker->city();
             $arr_station= $faker->city();
+            //se sono uguali, rigenero quella di arrivo!
             if($dep_station===$arr_station){
                 $arr_station= $faker->city();
             }
